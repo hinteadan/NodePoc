@@ -1,0 +1,14 @@
+{
+  "name": "Backend",
+  "version": "0.0.0",
+  "description": "Backend",
+  "main": "server.js",
+  "author": {
+    "name": "hinte_000",
+    "email": ""
+  },
+  "dependencies": {
+    "lodash": "^3.9.3",
+    "pg": "^4.4.0"
+  }
+}
