@@ -26,8 +26,8 @@
                 $http.post('http://localhost:1337', $s.user).then(function () {
                     $s.error = null;
                     $l.path('/browse');
-                }, function () {
-                    $s.error = 'Some error occurred';
+                }, function (err) {
+                    $s.error = err.data;
                 });
             };
 

@@ -43,6 +43,7 @@ http.createServer(function (req, res) {
             
             dataStore.saveUser(userDto, function (err) {
                 if (err) {
+                    res.writeHead(500, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' });
                     res.write(JSON.stringify({ Error: err }), 'utf8');
                     res.end();
                     return;
