@@ -7,6 +7,7 @@
         $rp
             .when('/browse', { templateUrl: 'scripts/view/browse.tmpl.html', controller: 'browse' })
             .when('/login', { templateUrl: 'scripts/view/login.tmpl.html', controller: 'login' })
+            .when('/create', { templateUrl: 'scripts/view/create.tmpl.html', controller: 'create' })
             .otherwise({
                 redirectTo: '/login'
             });
