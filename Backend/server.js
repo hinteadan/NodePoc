@@ -26,7 +26,6 @@ http.createServer(function (req, res) {
         return;
     }
     
-    res.writeHead(200, { 'Content-Type': 'application/json' });
     dataStore.users(function (err, users) {
         if (err) {
             res.write(JSON.stringify({ Error: err }), 'utf8');
@@ -34,7 +33,8 @@ http.createServer(function (req, res) {
             return;
         }
         
-        res.write(JSON.stringify(users), 'utf8');
-        res.end();
+        var body = JSON.stringify(users);
+        res.writeHead(200, { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*', 'Content-Length': body.length });
+        res.end(body);
     });
 }).listen(port);
