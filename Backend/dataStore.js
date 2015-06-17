@@ -12,7 +12,7 @@
                 callback(err, null); return;
             }
             
-            client.query('SELECT uuid_generate_v4()', function (err, result) {
+            client.query('SELECT uuid_generate_v4() AS id', function (err, result) {
                 if (err) {
                     callback(err, null); return;
                 }
