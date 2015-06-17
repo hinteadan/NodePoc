@@ -2,3 +2,5 @@
 node_modules
 .ntvs_analysis.dat
 *.suo
+bin
+obj
