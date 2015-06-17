@@ -32,7 +32,7 @@
                             done();
                             callback(err, null); return;
                         }
-
+                        
                         done();
 
                     });
@@ -56,12 +56,28 @@
                     done();
                     callback(err, null); return;
                 }
-
-                done();
                 
-                callback(null, _.map(result.rows, function (row) {
-                    return new model.User(row.Id, row.Username);
-                }));
+                client.query('SELECT * FROM "UserDetails"', function (err, details) {
+                    
+                    if (err) {
+                        done();
+                        callback(err, null); return;
+                    }
+                    
+                    done();
+                    
+                    callback(null, _.map(result.rows, function (row) {
+                        var user = new model.User(row.Id, row.Username),
+                            detailsRow = _.find(details.rows, { UserId: user.id });
+                        
+                        if (detailsRow) {
+                            user.details.firstName = detailsRow.FirstName;
+                            user.details.lastName = detailsRow.LastName;
+                        }
+
+                        return user;
+                    }));
+                });
             });
 
         });
