@@ -1,3 +1,18 @@
 ﻿<div>
-    Browse {{users}}
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Username</th>
+                <th>Full Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in users">
+                <td>{{user.id}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.details.firstName}} {{user.details.lastName}}</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
