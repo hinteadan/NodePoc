@@ -1,0 +1,9 @@
+{
+  "name": "frontend",
+  "private": true,
+  "dependencies": {
+    "jquery": "~1.11.1",
+    "angular": "~1.4.1",
+    "angular-route": "~1.4.1"
+  }
+}
