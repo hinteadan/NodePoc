@@ -5,6 +5,41 @@
         connectionString = 'postgres://postgres:' + encodeURIComponent('Password#1') + '@localhost:5432/NodePoc',
         _ = require('lodash');
     
+    this.saveUser = function (user, callback) {
+        
+        pg.connect(connectionString, function (err, client, done) {
+            if (err) {
+                callback(err, null); return;
+            }
+            
+            client.query('SELECT uuid_generate_v4()', function (err, result) {
+                if (err) {
+                    callback(err, null); return;
+                }
+                
+                user.id = user.id || result.rows[0].id;
+                
+                client.query('INSERT INTO "Users"("Id", "Username") VALUES($1, $2)', [user.id, user.username], function (err, result) {
+                    if (err) {
+                        callback(err, null); return;
+                    }
+                    
+                    client.query('INSERT INTO "UserDetails"("UserId", "FirstName", "LastName") VALUES ($1, $2, $3)', [user.id, user.details.firstName, user.details.lastName], function (err, result) {
+                        if (err) {
+                            callback(err, null); return;
+                        }
+
+                        client.end();
+                    
+                    });
+                    
+                });
+
+            });
+
+        });
+    };
+    
     this.users = function (callback) {
         pg.connect(connectionString, function (err, client, done) {
             if (err) {
