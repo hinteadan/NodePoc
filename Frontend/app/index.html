@@ -4,12 +4,14 @@
     <meta charset="utf-8">
     <title>Node WebApp Front-end PoC</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
     <link rel="shortcut icon" href="/favicon.ico">
+
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
 </head>
@@ -18,15 +20,32 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div ng-view></div>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">ICM Disaster Aide</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12" ng-view>
+
+            </div>
+        </div>
+    </div>
 
     <!-- build:js(.) scripts/lib.js -->
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <!-- endbuild -->
     <!-- build:js({app,.tmp}) scripts/app.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controller/browse.js"></script>
+    <script src="scripts/controller/login.js"></script>
     <!-- endbuild -->
 </body>
 </html>

@@ -5,6 +5,31 @@
         connectionString = 'postgres://postgres:' + encodeURIComponent('Password#1') + '@localhost:5432/NodePoc',
         _ = require('lodash');
     
+    this.authenticate = function (username, password, callback) {
+        pg.connect(connectionString, function (err, client, done) {
+            if (err) {
+                done();
+                callback(err, null); return;
+            }
+            
+            client.query('SELECT "Id","Username" FROM "Users" WHERE "Username"=\'' + username + '\'', function (err, result) {
+                if (err) {
+                    done();
+                    callback(err, null); return;
+                }
+                
+                done();
+                
+                if (result.rows.length === 0) {
+                    callback(new Error('Invalid Credentials'), null); return;
+                }
+                
+                callback(null, true);
+            });
+
+        });
+    };
+    
     this.saveUser = function (user, callback) {
         
         pg.connect(connectionString, function (err, client, done) {
@@ -74,7 +99,7 @@
                             user.details.firstName = detailsRow.FirstName;
                             user.details.lastName = detailsRow.LastName;
                         }
-
+                        
                         return user;
                     }));
                 });

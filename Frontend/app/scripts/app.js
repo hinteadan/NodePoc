@@ -5,10 +5,11 @@
     angular.module('app', ['ng', 'ngRoute'])
     .config(['$routeProvider', function ($rp) {
         $rp
-        .when('/browse', { templateUrl: 'scripts/view/browse.tmpl.html', controller: 'browse' })
-        .otherwise({
-            redirectTo: '/browse'
-        });
+            .when('/browse', { templateUrl: 'scripts/view/browse.tmpl.html', controller: 'browse' })
+            .when('/login', { templateUrl: 'scripts/view/login.tmpl.html', controller: 'login' })
+            .otherwise({
+                redirectTo: '/login'
+            });
     }]);
 
 
