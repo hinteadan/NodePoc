@@ -1,11 +1,7 @@
-﻿function User(id, username) {
-    this.id = id;
-    this.username = username;
-}
-
-function DataProvider() {
+﻿function DataProvider() {
     
     var pg = require('pg'),
+        model = require('./model.js'),
         connectionString = 'postgres://postgres:' + encodeURIComponent('Password#1') + '@localhost:5432/NodePoc',
         _ = require('lodash');
     
@@ -23,7 +19,7 @@ function DataProvider() {
                 client.end();
                 
                 callback(null, _.map(result.rows, function (row) {
-                    return new User(row.Id, row.Username);
+                    return new model.User(row.Id, row.Username);
                 }));
             });
 
